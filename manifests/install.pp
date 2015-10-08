@@ -26,13 +26,11 @@ class puppet::install {
   }
 
   # Configure puppetdb and its underlying database
-  class { 'puppetdb':
-    require => Package['puppetserver'],
-  }
+  class { 'puppetdb':  }
 
   # Configure the puppet master to use puppetdb
   class { 'puppetdb::master::config':
-    require => Package['puppetserver'],
+    require => Class['puppetdb']
   }
 
   ini_setting { 'dns_alt_names':
