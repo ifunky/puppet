@@ -22,7 +22,7 @@ class puppet::install {
   }
 
   package {'puppetserver':
-    ensure => '2.2.1',
+    ensure => 'installed',
   }
 
   ini_setting { 'dns_alt_names':
