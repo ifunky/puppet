@@ -5,10 +5,6 @@
 #
 class puppet::install {
 
-  package {'vim-enhanced':
-    ensure => latest,
-  }
-
   package { 'deep_merge':
     ensure   => 'installed',
     provider => 'gem',
@@ -26,7 +22,7 @@ class puppet::install {
   }
 
   package {'puppetserver':
-    ensure => latest,
+    ensure => '2.2.1',
   }
 
   ini_setting { 'dns_alt_names':

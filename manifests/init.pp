@@ -7,21 +7,14 @@
 # @param example_path Required.  Path to somewhere
 #
 # @author Dan @ iFunky.net
-class puppet (
-  $ensure       = undef,
-  $example_path = $puppet::params::example_path,
-) inherits puppet::params {
+class puppet ()  inherits puppet::params {
 
-  validate_re($ensure,['^(present|absent)$'], 'ERROR: You must specify present or absent')
-  validate_absolute_path($example_path)
+  #validate_re($ensure,['^(present|absent)$'], 'ERROR: You must specify present or absent')
+  #validate_absolute_path($example_path)
 
-  if (empty($example_path)){
-    fail 'ERROR:: example_path was not specified'
-  }
-
-  if (downcase($::osfamily) != 'windows') {
-    fail 'ERROR:: This module will only work on Windows.'
-  }
+  #if (empty($example_path)){
+  #  fail 'ERROR:: example_path was not specified'
+  #}
 
   case downcase($::osfamily) {
     'redhat': {

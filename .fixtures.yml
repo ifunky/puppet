@@ -1,5 +1,12 @@
 fixtures:
   repositories:
     stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib"
+    inifile: "https://github.com/puppetlabs/puppetlabs-inifile.git"
+    puppetdb: "https://github.com/puppetlabs/puppetlabs-puppetdb.git"
+    postgresql: "https://github.com/puppetlabs/puppetlabs-postgresql.git"
+    firewall: "https://github.com/puppetlabs/puppetlabs-firewall.git"
+    firewall: "https://github.com/puppetlabs/puppetlabs-firewall.git"
+    r10k: "https://github.com/acidprime/r10k.git"
+    hiera: "https://github.com/hunner/puppet-hiera.git"
   symlinks:
     puppet: "#{source_dir}"

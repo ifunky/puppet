@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe 'puppet', :type => :class do
   let(:facts) { {
-      :osfamily  => 'Windows'
+      :osfamily  => 'Redhat'
   } }
-  let(:params) {{
-      :ensure       => 'present',
-      :example_path	=> 'c:\Temp'
-  }}
+  #let(:params) {{
+  #    :ensure       => 'present',
+  #    :example_path	=> 'c:\Temp'
+  #}}
 
   it { should contain_class('puppet::install').that_comes_before('puppet::config') }
 
@@ -18,27 +18,10 @@ describe 'puppet', :type => :class do
     }
   end
 
-  context 'when trying to install on a non Windows server' do
-    let(:facts) { {:osfamily => 'Ubuntu'} }
+  context 'when trying to install on a non RHEL server' do
+    let(:facts) { {:osfamily => 'Windows'} }
 
     it { should compile.and_raise_error(/ERROR:: This module only works on RHEL based systems./) }
-  end
-
-  context 'when not passing correct values to ensure should fail' do
-    let(:params) {{
-        :ensure => 'nope',
-    }}
-
-    it { should compile.and_raise_error(/ERROR: You must specify present or absent/) }
-  end
-
-  context 'when not passing example_path should fail' do
-    let(:params) {{
-        :ensure       => 'present',
-        :example_path	=> ''
-    }}
-
-    it { should compile.and_raise_error(/\"\" is not an absolute path/) }
   end
 
 end
