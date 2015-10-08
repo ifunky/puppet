@@ -5,8 +5,8 @@
 #
 class puppet::service {
 
-  service {'puppetserver':
-    ensure => 'running',
-  }
+  #service {'puppetserver':
+  #  ensure => 'running',
+  #}
 
 }
