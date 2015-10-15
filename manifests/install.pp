@@ -25,14 +25,6 @@ class puppet::install {
     ensure => 'installed',
   }
 
-  # Configure puppetdb and its underlying database
-  #class { 'puppetdb':  }
-
-  # Configure the puppet master to use puppetdb
-  #class { 'puppetdb::master::config':
-  #  require => Class['puppetdb']
-  #}
-
   notify {"${::settings::environmentpath }":}
   notify {"${::settings::codedir}":}
 
@@ -53,7 +45,7 @@ class puppet::install {
     },
     manage_modulepath => false,
     require  => Package["puppetserver"],
-    #notify   => Service["puppetserver"]
+    notify   => Service["puppetserver"]
   }
 
 }

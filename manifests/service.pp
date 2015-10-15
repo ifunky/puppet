@@ -5,8 +5,14 @@
 #
 class puppet::service {
 
-  #service {'puppetserver':
-  #  ensure => 'running',
+  #if ! defined(Service['puppetserver') {
+  #  service { $puppet_service_name:
+  #    ensure => running,
+  #  }
   #}
+
+  service { 'puppetserver':
+    ensure => running,
+  }
 
 }
