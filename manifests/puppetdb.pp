@@ -17,13 +17,14 @@ class puppet::puppetdb::install (
   }
 
   class { 'puppetdb::master::config':
-    require => Class['puppetdb']
+    require => Class['puppetdb'],
+    notify  => Exec['rgen_certs']
   }
 
   exec { 'rgen_certs':
     command => "/opt/puppetlabs/bin/puppetdb ssl-setup",
     cwd   => "${::settings::confdir}",
-    before => Service['puppetdb'],
+    subscribe => Class['puppetdb::master::config'],
   }
 
 }
