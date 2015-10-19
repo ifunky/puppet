@@ -44,8 +44,8 @@ class puppet::install {
       },
     },
     manage_modulepath => false,
-    require  => Package["puppetserver"],
-    notify   => Service["puppetserver"]
+    require  => Package["puppetserver"]
+    #,    notify   => Service["puppetserver"]
   }
 
 }

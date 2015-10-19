@@ -37,8 +37,7 @@ class puppet::config {
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'master',
     setting => 'dns_alt_names',
-    value   => "${fqdn} puppet",
-    require => Package['puppetserver'],
+    value   => "${fqdn} puppet d",
   }
 
   ini_setting { 'autosign':
@@ -47,7 +46,6 @@ class puppet::config {
     section => 'master',
     setting => 'autosign',
     value   => 'true',
-    require => Package['puppetserver'],
   }
 
   ini_setting { 'init.config.javaheap':
@@ -56,7 +54,6 @@ class puppet::config {
     section => '',
     setting => 'JAVA_ARGS',
     value   => "\"-Xms512m -Xmx512m -XX:MaxPermSize=256m\"",
-    require => Package['puppetserver'],
   }
 
   ini_setting { 'trusted_server_facts':
@@ -97,7 +94,7 @@ class puppet::config {
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'main',
     setting => 'server',
-    value   => 'basecentos',
+    value   => $::fqdn,
   }
 
   ini_setting { 'autoflush':

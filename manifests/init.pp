@@ -21,8 +21,9 @@ class puppet ()  inherits puppet::params {
       class { '::puppet::install': } ->
       class { '::puppet::config': } ~>
       class { '::puppet::service': } ->
-      class { '::puppet::puppetdb::install': } ->
       Class['::puppet']
+
+      include ::puppet::puppetdb::install
     }
     default: {
       fail('ERROR:: This module only works on RHEL based systems at the moment.')

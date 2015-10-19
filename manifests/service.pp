@@ -5,14 +5,22 @@
 #
 class puppet::service {
 
-  #if ! defined(Service['puppetserver') {
-  #  service { $puppet_service_name:
-  #    ensure => running,
-  #  }
+  #service { 'puppetserver':
+  #  ensure    => running,
+  #  require   => Class[puppet::config],
+  #  subscribe => [
+  #    Class[puppet::config],
+  #  ]
   #}
 
-  service { 'puppetserver':
-    ensure => running,
+  # Due to the puppetserver service taking a long time to start and the service resource not supporting timeout
+  exec { 'restart puppetserver':
+    command   => "/bin/systemctl restart  puppetserver",
+    cwd       => "${::settings::confdir}",
+    require   => Class[puppet::config],
+    subscribe => [ Class[puppet::config] ],
+    before    => Service['puppetdb'],
+    timeout   => 300
   }
 
 }

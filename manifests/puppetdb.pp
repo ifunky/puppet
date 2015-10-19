@@ -20,4 +20,10 @@ class puppet::puppetdb::install (
     require => Class['puppetdb']
   }
 
+  exec { 'rgen_certs':
+    command => "/opt/puppetlabs/bin/puppetdb ssl-setup",
+    cwd   => "${::settings::confdir}",
+    before => Service['puppetdb'],
+  }
+
 }
