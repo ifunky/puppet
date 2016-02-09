@@ -7,7 +7,10 @@
 # @param example_path Required.  Path to somewhere
 #
 # @author Dan @ iFunky.net
-class puppet ()  inherits puppet::params {
+class puppet (
+  $control_repo_url = "",
+  $hiera_repo_url   = ""
+) inherits puppet::params {
 
   #validate_re($ensure,['^(present|absent)$'], 'ERROR: You must specify present or absent')
   #validate_absolute_path($example_path)

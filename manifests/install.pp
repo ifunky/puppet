@@ -28,17 +28,19 @@ class puppet::install {
   notify {"${::settings::environmentpath }":}
   notify {"${::settings::codedir}":}
 
+  notify { "git repo: ${puppet::control_repo_url}  ": }
+
   class { 'r10k':
     version     => '1.5.1',
     configfile  => '/etc/r10k.yaml',
     sources => {
       'puppet' => {
-        'remote'  => 'ssh://git@somewwhere/controlfile.git',
+        'remote'  => $puppet::control_repo_url,
         'basedir' => '/etc/puppetlabs/code/environments', #"${::settings::environmentpath }",
         'prefix'  => false,
       },
       'hiera' => {
-        'remote'  => 'ssh://git@somewhere/hiera-repo.git',
+        'remote'  => $puppet::hiera_repo_url,
         'basedir' => "${::settings::codedir}/environments",
         'prefix'  => false,
       },
