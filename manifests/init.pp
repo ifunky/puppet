@@ -9,7 +9,9 @@
 # @author Dan @ iFunky.net
 class puppet (
   $control_repo_url = "",
-  $hiera_repo_url   = ""
+  $hiera_repo_url   = "",
+  $strict_variables = false,
+  $auto_sign        = true
 ) inherits puppet::params {
 
   #validate_re($ensure,['^(present|absent)$'], 'ERROR: You must specify present or absent')

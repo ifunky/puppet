@@ -45,7 +45,7 @@ class puppet::config {
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'master',
     setting => 'autosign',
-    value   => 'true',
+    value   => $puppet::auto_sign,
   }
 
   ini_setting { 'init.config.javaheap':
@@ -69,7 +69,7 @@ class puppet::config {
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'main',
     setting => 'strict_variables',
-    value   => 'true',
+    value   => $puppet::strict_variables,
   }
 
 #  Puppet agent settings
