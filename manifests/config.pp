@@ -22,12 +22,12 @@ class puppet::config {
     ],
 
     backends => [
-   #   'eyaml',
+      #   'eyaml',
       'yaml',
     ],
-    hiera_yaml     => "${::settings::confdir}/hiera.yaml",
+    hiera_yaml     => "${::settings::codedir}/hiera.yaml",
     datadir        => '${::codedir}/hieradata/%{::environment}', #"/etc/puppet/hieradata/%{::environment}",
-   # extra_config   => join($eyaml_config,"\n"),
+    # extra_config   => join($eyaml_config,"\n"),
     merge_behavior => 'deeper',
     require        => [Class['r10k'], Package['hiera-eyaml']],
   }
@@ -72,7 +72,7 @@ class puppet::config {
     value   => $puppet::strict_variables,
   }
 
-#  Puppet agent settings
+  #  Puppet agent settings
   ini_setting { 'pluginsync':
     ensure  => present,
     path    => '/etc/puppetlabs/puppet/puppet.conf',

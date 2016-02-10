@@ -36,12 +36,12 @@ class puppet::install {
     sources => {
       'puppet' => {
         'remote'  => $puppet::control_repo_url,
-        'basedir' => '/etc/puppetlabs/code/environments', #"${::settings::environmentpath }",
+        'basedir' => "${::settings::codedir}/environments", # "${::settings::environmentpath }",
         'prefix'  => false,
       },
       'hiera' => {
         'remote'  => $puppet::hiera_repo_url,
-        'basedir' => "${::settings::codedir}/environments",
+        'basedir' => "${::settings::codedir}/hieradata",
         'prefix'  => false,
       },
     },
