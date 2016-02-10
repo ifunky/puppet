@@ -78,7 +78,7 @@ class puppet::config {
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'main',
     setting => 'pluginsync',
-    value   => 'false',
+    value   => 'true',
   }
 
   ini_setting { 'environment':
