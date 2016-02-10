@@ -26,7 +26,7 @@ class puppet::config {
       'yaml',
     ],
     hiera_yaml     => "${::settings::codedir}/hiera.yaml",
-    datadir        => '${::codedir}/hieradata/%{::environment}', #"/etc/puppet/hieradata/%{::environment}",
+    datadir        => '/etc/puppetlabs/code/hieradata/%{::environment}',
     # extra_config   => join($eyaml_config,"\n"),
     merge_behavior => 'deeper',
     require        => [Class['r10k'], Package['hiera-eyaml']],
