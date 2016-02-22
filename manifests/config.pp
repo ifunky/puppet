@@ -113,4 +113,12 @@ class puppet::config {
     value    => 'true',
   }
 
+  ini_setting { 'allow_duplicate_certs':
+    ensure   => present,
+    path     => '/etc/puppetlabs/puppet/puppet.conf',
+    section  => 'main',
+    setting  => 'allow_duplicate_certs',
+    value    => $puppet::allow_duplicate_certs,
+  }
+
 }
